@@ -15,20 +15,24 @@ def calculate_average_for_all_students(students_list):
     print(f'Общий средний балл по всем студентам: {result}\n')
 
 
-def add_student(student_dict):
-    students.append(student_dict)
+def add_student(students_list, student_dict, avgs_list):
+    students_list.append(student_dict)
 
-    avg_students_grades.append(calculate_average(students[-1]['grades']))
+    avgs_list.append(calculate_average(students[-1]['grades']))
 
-    calculate_average_for_all_students(students)
+    calculate_average_for_all_students(students_list)
+
+    return students_list, avgs_list
 
 
-def delete_student_with_least_avg(students_list):
-    students.pop(avg_students_grades.index((min(avg_students_grades))))
+def delete_student_with_least_avg(students_list, avgs_list):
+    students_list.pop(avg_students_grades.index((min(avg_students_grades))))
 
-    avg_students_grades.pop(avg_students_grades.index((min(avg_students_grades))))
+    avgs_list.pop(avg_students_grades.index((min(avg_students_grades))))
 
-    calculate_average_for_all_students(students)
+    calculate_average_for_all_students(students_list)
+
+    return students_list, avgs_list
 
 
 def print_journal(students_list):
@@ -51,8 +55,8 @@ avg_students_grades = [calculate_average(students[i]['grades']) for i in range(l
 
 print_journal(students)
 
-add_student({'name': 'Jenny', 'grades': [91, 83, 77]})
+students, avg_students_grades = add_student(students, {'name': 'Jenny', 'grades': [91, 83, 77]}, avg_students_grades)
 
-delete_student_with_least_avg(students)
+students, avg_students_grades = delete_student_with_least_avg(students, avg_students_grades)
 
 print_journal(students)
