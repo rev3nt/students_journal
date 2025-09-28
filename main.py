@@ -37,9 +37,7 @@ def delete_student_with_least_avg(students_list, avgs_list):
 
 def print_journal(students_list):
     for i in range(len(students_list)):
-        print(f'Студент: {students_list[i]["name"]}')
-
-        print(f'Средний балл: {avg_students_grades[i]}')
+        print(f'Студент: {students_list[i]["name"]}\nСредний балл: {avg_students_grades[i]}')
 
         print(f'Статус: {'Успешен' if avg_students_grades[i] > 75 else 'Отстающий'}\n')
 
