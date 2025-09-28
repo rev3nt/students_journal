@@ -3,6 +3,7 @@ def calculate_average(grades):
 
     return average
 
+
 def calculate_average_for_all_students(students_list):
     summ_of_avg = 0
 
@@ -13,6 +14,7 @@ def calculate_average_for_all_students(students_list):
 
     print(f'Общий средний балл по всем студентам: {result}\n')
 
+
 def add_student(student_dict):
     students.append(student_dict)
 
@@ -20,12 +22,14 @@ def add_student(student_dict):
 
     calculate_average_for_all_students(students)
 
+
 def delete_student_with_least_avg(students_list):
     students.pop(avg_students_grades.index((min(avg_students_grades))))
 
     avg_students_grades.pop(avg_students_grades.index((min(avg_students_grades))))
 
     calculate_average_for_all_students(students)
+
 
 def print_journal(students_list):
     for i in range(len(students_list)):
