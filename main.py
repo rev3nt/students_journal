@@ -1,24 +1,27 @@
 def calculate_average(grades):
-    average = round(sum(grades) / len(grades))
+        average = round(sum(grades) / len(grades))
 
-    return average
+        return average
 
 
 def calculate_average_for_all_students(students_list):
-    summ_of_avg = 0
+    if len(students_list) != 0:
+        summ_of_avg = 0
 
-    for student in students_list:
-        summ_of_avg += calculate_average(student['grades'])
+        for student in students_list:
+            summ_of_avg += calculate_average(student['grades'])
 
-    result = round(summ_of_avg / len(students_list))
+        result = round(summ_of_avg / len(students_list))
 
-    print(f'Общий средний балл по всем студентам: {result}\n')
+        print(f'Общий средний балл по всем студентам: {result}\n')
+    else:
+        print('Список студентов пуст!')
 
 
 def add_student(students_list, student_dict, avgs_list):
     students_list.append(student_dict)
 
-    avgs_list.append(calculate_average(students[-1]['grades']))
+    avgs_list.append(student_dict['grades'])
 
     calculate_average_for_all_students(students_list)
 
@@ -26,13 +29,18 @@ def add_student(students_list, student_dict, avgs_list):
 
 
 def delete_student_with_least_avg(students_list, avgs_list):
-    students_list.pop(avg_students_grades.index((min(avg_students_grades))))
+    if len(students_list) != 0:
+        min_index = avg_students_grades.index((min(avg_students_grades)))
 
-    avgs_list.pop(avg_students_grades.index((min(avg_students_grades))))
+        students_list.pop(min_index)
 
-    calculate_average_for_all_students(students_list)
+        avgs_list.pop(min_index)
 
-    return students_list, avgs_list
+        calculate_average_for_all_students(students_list)
+
+        return students_list, avgs_list
+
+    print('Список студентов уже пуст!\n')
 
 
 def print_journal(students_list):
@@ -52,6 +60,8 @@ students = [
 avg_students_grades = [calculate_average(students[i]['grades']) for i in range(len(students))]
 
 print_journal(students)
+
+calculate_average_for_all_students(students)
 
 students, avg_students_grades = add_student(students, {'name': 'Jenny', 'grades': [91, 83, 77]}, avg_students_grades)
 
